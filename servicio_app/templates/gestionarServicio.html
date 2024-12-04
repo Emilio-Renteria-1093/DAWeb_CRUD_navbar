@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %} Gestion materias {% endblock %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12  col-md-4 col-lg-4 col-xl-4"> <!--colomna izq-->
+        
+        <h1>Servicio</h1>
+            <!--  la tabla  -->
+
+        
+        <div class="car-body">
+            <form action="registrarServicio/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Servicio" name="txtId_Servicio" class="form-control" placeholder="ID Servicio" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtTipo_Servicio" name="txtTipo_Servicio"  class="form-control" placeholder="Tipo de Servicio" minlength="1" maxlength="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtCosto" name="txtCosto"  class="form-control" placeholder="Costo del Servicio" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtMaterial" name="txtMaterial"  class="form-control" placeholder="Material" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_inicio" name="txtFecha_inicio"  class="form-control" placeholder="Fecha de Inicio"  required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_finalizado" name="txtFecha_finalizado"  class="form-control" placeholder="Fecha de Finalizado"  required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtResolucion_Problema" name="txtResolucion_Problema"  class="form-control" placeholder="Resolucion del pobrema" min="1" max="180" required>
+                </div>
+
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+                
+    </div><!--colomna izq-->
+
+
+
+
+
+<div class="row"> 
+    <div class="col-sm-12  col-md-8 col-lg-8 col-xl-8"> <!--colomna derecha-->
+        
+        <center>
+            <h1>listado de Servicio</h1>
+        <img class="w-59" src="{% static 'img/servicio.jpg'%}" alt="nava" width="500" height="250">
+        </center>
+                <!--  la tabla  -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id_Servicio</th>
+                        <th scope="col">Tipo_Servicio</th>
+                        <th scope="col">Costo</th>
+                        <th scope="col">Material</th>
+                        <th scope="col">Fecha_inicio</th>
+                        <th scope="col">Fecha_finalizado</th>
+                        <th scope="col">Resolucion_Problema</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in listaServicio %}
+
+                        <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.Id_Servicio}}</td>
+                        <td>{{m.Tipo_Servicio}}</td>
+                        <td>{{m.Costo}}</td>
+                        <td>{{m.Material}}</td>
+                        <td>{{m.Fecha_inicio}}</td>
+                        <td>{{m.Fecha_finalizado}}</td>
+                        <td>{{m.Resolucion_Problema}}</td>
+
+                        <td><a href="seleccionarServicio/{{m.Id_Servicio}}" class="btn btn-info">editar</a> </td><!--falta-->
+                        <td><a href="borrarServicio/{{m.Id_Servicio}}" class="btn btn-danger">borrar</a> </td><!--falta-->
+
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </div><!--colomna derecha-->
+</div>
+</div><!--la fila-->
+
+{% endblock %}

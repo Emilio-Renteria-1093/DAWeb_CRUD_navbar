@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+
+<div class="row"><!--fila en editar-->
+
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Servicio</h2>
+        <!--Aqui codigo tarjeta-->
+
+        <!--  la tabla  -->
+
+        <!--txt codigo-->
+        <div class="car-body">
+            <form action="/editarServicio/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Servicio" name="txtId_Servicio" class="form-control" value="{{listaServicio.Id_Servicio}}" placeholder="ID Servicio" minlength="1" maxlength="6" readonly required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtTipo_Servicio" name="txtTipo_Servicio"  class="form-control" value="{{listaServicio.Tipo_Servicio}}" placeholder="Tipo de Servicio" minlength="1" maxlength="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtCosto" name="txtCosto"  class="form-control" value="{{listaServicio.Costo}}" placeholder="Costo del Servicio" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtMaterial" name="txtMaterial"  class="form-control" value="{{listaServicio.Material}}" placeholder="Material" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_inicio" name="txtFecha_inicio"  class="form-control" value="{{listaServicio.Fecha_inicio}}" placeholder="Fecha de Inicio"  required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_finalizado" name="txtFecha_finalizado"  class="form-control" value="{{listaServicio.Fecha_finalizado}}" placeholder="Fecha de Finalizado"  required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtResolucion_Problema" name="txtResolucion_Problema"  class="form-control" value="{{listaServicio.Resolucion_Problema}}" placeholder="Resolucion del pobrema" min="1" max="180" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+
+        <!--Aqui codigo tarjeta-->
+    </div>
+
+</div>
+
+
+
+{% endblock  %}

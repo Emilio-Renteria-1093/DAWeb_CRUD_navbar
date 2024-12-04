@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!--fila en editar-->
+
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Sucursal</h2>
+        <!--Aqui codigo tarjeta-->
+
+        <!--  la tabla  -->
+
+        <!--txt codigo-->
+        <div class="car-body">
+            <form action="/editarSucursal/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Sucursal" name="txtId_Sucursal" class="form-control" value="{{listaSucursales.Id_Sucursal}}" placeholder="ID Sucursal" minlength="1" maxlength="6" readonly >
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtLocolizacion" name="txtLocolizacion"  class="form-control" value="{{listaSucursales.Locolizacion}}" placeholder="Locolizacion" minlength="1" maxlength="100" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtNum_Empleados" name="txtNum_Empleados"  class="form-control" value="{{listaSucursales.Num_Empleados}}" placeholder="Numero de Empleados" min="1" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtGanancias" name="txtGanancias"  class="form-control" value="{{listaSucursales.Ganancias}}" placeholder="Ganancias" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtTelefono" name="txtTelefono"  class="form-control" value="{{listaSucursales.Telefono}}" placeholder="Telefono" min="1" max="180" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtEncargado" name="txtEncargado"  class="form-control" value="{{listaSucursales.Encargado}}" placeholder="Encargado" min="1" max="10" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtEmail" name="txtEmail"  class="form-control" value="{{listaSucursales.Email}}" placeholder="Email" min="1" max="180" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+
+        <!--Aqui codigo tarjeta-->
+    </div>
+
+</div>
+
+
+
+{% endblock  %}

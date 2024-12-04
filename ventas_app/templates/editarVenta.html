@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!--fila en editar-->
+
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Venta</h2>
+        <!--Aqui codigo tarjeta-->
+
+        <!--  la tabla  -->
+
+        <!--txt codigo-->
+        <div class="car-body">
+            <form action="/editarVenta/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Venta" name="txtId_Venta" class="form-control" value={{listaVentas.Id_Venta}} placeholder="ID Venta" minlength="1" maxlength="6" readonly required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtId_Nomina" name="txtId_Nomina"  class="form-control" value={{listaVentas.Id_Nomina}} placeholder="ID Nomina" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_Venta" name="txtFecha_Venta"  class="form-control" value={{listaVentas.Fecha_Venta}} placeholder="Fecha de Venta" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Empleado" name="txtId_Empleado"  class="form-control" value={{listaVentas.Id_Empleado}} placeholder="ID Empleado" min="1" max="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtTotal" name="txtTotal"  class="form-control" value={{listaVentas.Total}} placeholder="Total" min="1" max="10000" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtProducto_Vendido" name="txtProducto_Vendido"  class="form-control" value={{listaVentas.Producto_Vendido}} placeholder="Productos Vendidos" min="1" max="08" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtCant_Productos" name="txtCant_Productos"  class="form-control" value={{listaVentas.Cant_Productos}} placeholder="Cantidad de Productos" min="1" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Producto" name="txtId_Producto"  class="form-control" value={{listaVentas.Id_Producto}} placeholder="ID Producto" min="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Sucursal" name="txtId_Sucursal"  class="form-control" value={{listaVentas.Id_Sucursal}} placeholder="ID Sucursal" min="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Proveedor" name="txtId_Proveedor"  class="form-control" value={{listaVentas.Id_Proveedor}} placeholder="ID Proveedor" min="1" maxlength="6" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+
+        <!--Aqui codigo tarjeta-->
+    </div>
+
+</div>
+
+
+
+{% endblock  %}

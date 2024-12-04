@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+
+{% block title %} Gestion materias {% endblock %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12  col-md-4 col-lg-4 col-xl-4"> <!--colomna izq-->
+        
+        <h1>Proveedores</h1>
+            <!--  la tabla  -->
+
+        
+        <div class="car-body">
+            <form action="registrarProveedor/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Proveedor" name="txtId_Proveedor" class="form-control"  placeholder="ID Proveedor" minlength="1" maxlength="6"  required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtNombre" name="txtNombre"  class="form-control" placeholder="Nombre(s)" minlength="1" maxlength="200" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtApellido" name="txtApellido"  class="form-control" placeholder="Apellido(s)" min="1" max="300" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtDireccion" name="txtDireccion"  class="form-control" placeholder="Direccion" min="1" max="10000" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtRuta" name="txtRuta"  class="form-control" placeholder="Ruta" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtSucursales" name="txtSucursales"  class="form-control" placeholder="numero de Sucursales" min="1" max="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtNum_Tel" name="txtNum_Tel"  class="form-control" placeholder="Numero de Telefono" min="1" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtMetodo_Trans" name="txtMetodo_Trans"  class="form-control" placeholder="Metodo de Transaccion" min="1" max="6" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+                
+    </div><!--colomna izq-->
+
+
+
+
+
+<div class="row"> 
+    <div class="col-sm-12  col-md-8 col-lg-8 col-xl-8"> <!--colomna derecha-->
+        
+        <center>
+            <h1>listado de Proveedores</h1>
+        <img class="w-59" src="{% static 'img/proveedores.jpg'%}" alt="nava" width="500" height="250">
+        </center>
+                <!--  la tabla  -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id_Proveedor</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Ruta</th>
+                        <th scope="col">Sucursales</th>
+                        <th scope="col">Num_Tel</th>
+                        <th scope="col">Metodo_Trans</th>
+
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in listaProveedores %}
+
+                        <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.Id_Proveedor}}</td>
+                        <td>{{m.Nombre}}</td>
+                        <td>{{m.Apellido}}</td>
+                        <td>{{m.Direccion}}</td>
+                        <td>{{m.Ruta}}</td>
+                        <td>{{m.Sucursales}}</td>
+                        <td>{{m.Num_Tel}}</td>
+                        <td>{{m.Metodo_Trans}}</td>
+
+                        <td><a href="seleccionarProveedor/{{m.Id_Proveedor}}" class="btn btn-info">editar</a> </td><!--falta-->
+                        <td><a href="borrarProveedor/{{m.Id_Proveedor}}" class="btn btn-danger">borrar</a> </td><!--falta-->
+
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </div><!--colomna derecha-->
+</div>
+</div><!--la fila-->
+
+{% endblock %}

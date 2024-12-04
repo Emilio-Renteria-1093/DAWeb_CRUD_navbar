@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+
+{% block title %} Gestion materias {% endblock %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12  col-md-4 col-lg-4 col-xl-4"> <!--colomna izq-->
+        
+        <h1>Venta</h1>
+            <!--  la tabla  -->
+
+        
+        <div class="car-body">
+            <form action="registrarVenta/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Venta" name="txtId_Venta" class="form-control" placeholder="ID Venta" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtId_Nomina" name="txtId_Nomina"  class="form-control" placeholder="ID Nomina" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_Venta" name="txtFecha_Venta"  class="form-control" placeholder="Fecha de Venta"  required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Empleado" name="txtId_Empleado"  class="form-control" placeholder="ID Empleado" min="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtTotal" name="txtTotal"  class="form-control" placeholder="Total" min="1" max="180" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtProducto_Vendido" name="txtProducto_Vendido"  class="form-control" placeholder="Productos Vendidos" min="1" max="10" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtCant_Productos" name="txtCant_Productos"  class="form-control" placeholder="Cantidad de Productos" min="1" max="180" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Producto" name="txtId_Producto"  class="form-control" placeholder="ID Producto" min="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Sucursal" name="txtId_Sucursal"  class="form-control" placeholder="ID Sucursal" min="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Sucursal" name="txtId_Sucursal"  class="form-control" placeholder="ID Proveedor" min="1"  maxlength="6" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+                
+    </div><!--colomna izq-->
+
+
+
+
+
+<div class="row"> 
+    <div class="col-sm-12  col-md-8 col-lg-8 col-xl-8"> <!--colomna derecha-->
+        
+        <center>
+            <h1>listado de Ventas</h1>
+        <img class="w-59" src="{% static 'img/ventas.jpg'%}" alt="nava" width="500" height="250">
+        </center>
+                <!--  la tabla  -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id_Venta</th>
+                        <th scope="col">Id_Nomina</th>
+                        <th scope="col">Fecha_Venta</th>
+                        <th scope="col">Id_Empleado</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Producto_Vendido</th>
+                        <th scope="col">Cant_Productos</th>
+                        <th scope="col">Id_Producto</th>
+                        <th scope="col">Id_Sucursal</th>
+                        <th scope="col">Id_Proveedor</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in listaVentas %}
+
+                        <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.Id_Venta}}</td>
+                        <td>{{m.Id_Nomina}}</td>
+                        <td>{{m.Id_Empleado}}</td>
+                        <td>{{m.Total}}</td>
+                        <td>{{m.Producto_Vendido}}</td>
+                        <td>{{m.Cant_Productos}}</td>
+                        <td>{{m.Id_Producto}}</td>
+                        <td>{{m.Id_Sucursal}}</td>
+                        <td>{{m.Id_Proveedor}}</td>
+                        <td><a href="seleccionarVenta/{{m.Id_Venta}}" class="btn btn-info">editar</a> </td><!--falta-->
+                        <td><a href="borrarVenta/{{m.Id_Venta}}" class="btn btn-danger">borrar</a> </td><!--falta-->
+
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </div><!--colomna derecha-->
+</div>
+</div><!--la fila-->
+
+{% endblock %}
