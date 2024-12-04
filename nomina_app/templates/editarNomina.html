@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!--fila en editar-->
+
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Nomina</h2>
+        <!--Aqui codigo tarjeta-->
+
+        <!--  la tabla  -->
+
+        <!--txt codigo-->
+        <div class="car-body">
+            <form action="/editarNomina/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Nomina" name="txtId_Nomina" class="form-control" value="{{listaNomina.Id_Nomina}}" placeholder="ID Empelado" minlength="1" maxlength="6" readonly required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtId_Empleado" name="txtId_Empleado"  class="form-control" value="{{listaNomina.Id_Empleado}}" placeholder="ID Empleado" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_Pago" name="txtFecha_Pago"  class="form-control" value="{{listaNomina.Fecha_Pago}}" placeholder="FEcha de Pago" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtPeriodo_Pago" name="txtPeriodo_Pago"  class="form-control" value="{{listaNomina.Periodo_Pago}}" placeholder="Periodo de Pago" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtDescripcion" name="txtDescripcion"  class="form-control" value="{{listaNomina.Descripcion}}" placeholder="Descripcion" min="1" max="180" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtTotal" name="txtTotal"  class="form-control" value="{{listaNomina.Total}}" placeholder="Total de la Nomina" min="1" max="10" required>
+                </div>
+
+
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+
+        <!--Aqui codigo tarjeta-->
+    </div>
+
+</div>
+
+
+
+{% endblock  %}

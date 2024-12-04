@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+
+{% block title %} Gestion materias {% endblock %}
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12  col-md-4 col-lg-4 col-xl-4"> <!--colomna izq-->
+        
+        <h1>Productos</h1>
+            <!--  la tabla  -->
+
+        
+        <div class="car-body">
+            <form action="registrarProducto/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Producto" name="txtId_Producto" class="form-control"  placeholder="ID Producto" minlength="1" maxlength="6"  required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtCantidad_P" name="txtCantidad_P"  class="form-control" placeholder="Cantidad de Productos" minlength="1" maxlength="200" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtTipo_Producto" name="txtTipo_Producto"  class="form-control" placeholder="Tipo de Producto" min="1" max="300" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtCosto" name="txtCosto"  class="form-control" placeholder="Costo" min="1" max="10000" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_Ingreso" name="txtFecha_Ingreso"  class="form-control" placeholder="Fecha de Ingreso" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtId_Proveedor" name="txtId_Proveedor"  class="form-control" placeholder="ID Proveedor" min="1" maxlength="6" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+                
+    </div><!--colomna izq-->
+
+
+
+
+
+<div class="row"> 
+    <div class="col-sm-12  col-md-8 col-lg-8 col-xl-8"> <!--colomna derecha-->
+        
+        <center>
+            <h1>listado de Productos</h1>
+        <img class="w-59" src="{% static 'img/productos.jpg'%}" alt="nava" width="500" height="250">
+        </center>
+                <!--  la tabla  -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id_Producto</th>
+                        <th scope="col">Cantidad_P</th>
+                        <th scope="col">Tipo_Producto</th>
+                        <th scope="col">Costo</th>
+                        <th scope="col">Fecha_Ingreso</th>
+                        <th scope="col">Id_Proveedor</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in listaProductos %}
+
+                        <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.Id_Producto}}</td>
+                        <td>{{m.Cantidad_P}}</td>
+                        <td>{{m.Tipo_Producto}}</td>
+                        <td>{{m.Costo}}</td>
+                        <td>{{m.Fecha_Ingreso}}</td>
+                        <td>{{m.Id_Proveedor}}</td>
+
+                        <td><a href="seleccionarProducto/{{m.Id_Producto}}" class="btn btn-info">editar</a> </td><!--falta-->
+                        <td><a href="borrarProducto/{{m.Id_Producto}}" class="btn btn-danger">borrar</a> </td><!--falta-->
+
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </div><!--colomna derecha-->
+</div>
+</div><!--la fila-->
+
+{% endblock %}

@@ -1,0 +1,100 @@
+
+{% extends "base.html" %}
+{% block title %} Gestion materias {% endblock %}
+
+{% block cuerpo %}
+{% load static %}
+
+<div class="row"> <!--la fila-->
+    <div class="col-sm-12  col-md-4 col-lg-4 col-xl-4"> <!--colomna izq-->
+        
+        <h1>Nomina</h1>
+            <!--  la tabla  -->
+
+        
+        <div class="car-body">
+            <form action="registrarNomina/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtId_Nomina" name="txtId_Nomina" class="form-control" placeholder="ID Nomina" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group ">
+                    <input type="text" id="txtId_Empleado" name="txtId_Empleado"  class="form-control" placeholder="ID Empleado" minlength="1" maxlength="6" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="txtFecha_Pago" name="txtFecha_Pago"  class="form-control" placeholder="Fecha de Pago" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtPeriodo_Pago" name="txtPeriodo_Pago"  class="form-control" placeholder="Periodo de Pago" min="1" max="20" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtDescripcion" name="txtDescripcion"  class="form-control" placeholder="Descripcion" min="1" max="180" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtTotal" name="txtTotal"  class="form-control" placeholder="Total de la Nomina" min="1" max="10" required>
+                </div>
+
+                <div class="car-body">
+                <button type="submit" class="btn btn-primary">guardar Cliente</button>
+                </div>
+
+            </form>
+        </div>
+                <!--  la tabla  -->
+                
+    </div><!--colomna izq-->
+
+
+
+
+
+<div class="row"> 
+    <div class="col-sm-12  col-md-8 col-lg-8 col-xl-8"> <!--colomna derecha-->
+        
+        <center>
+            <h1>listado de Nomina</h1>
+        <img class="w-59" src="{% static 'img/nomina.jpg'%}" alt="nava" width="500" height="300">
+        </center>
+
+                <!--  la tabla  -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id_Nomina</th>
+                        <th scope="col">Id_Empleado</th>
+                        <th scope="col">Fecha_Pago</th>
+                        <th scope="col">Periodo_Pago</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in listaNomina %}
+
+                        <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{m.Id_Nomina}}</td>
+                        <td>{{m.Id_Empleado}}</td>
+                        <td>{{m.Fecha_Pago}}</td>
+                        <td>{{m.Periodo_Pago}}</td>
+                        <td>{{m.Descripcion}}</td>
+                        <td>{{m.Total}}</td>
+
+                        <td><a href="seleccionarNomina/{{m.Id_Nomina}}" class="btn btn-info">editar</a> </td><!--falta-->
+                        <td><a href="borrarNomina/{{m.Id_Nomina}}" class="btn btn-danger">borrar</a> </td><!--falta-->
+
+                        </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </div><!--colomna derecha-->
+</div>
+</div><!--la fila-->
+
+{% endblock %}
